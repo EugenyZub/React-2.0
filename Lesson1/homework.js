@@ -18,21 +18,16 @@ let sponsors = {
     rus: ['RusAuto', 'SBO']
 };
 
-function calcCash(own = 0) {
-    let everyCash = Array.prototype.slice.call(arguments);
+function calcCash(own = 0, ...args) {
     let total = own;
-    for (let i = 0; i < everyCash[1].length; i++) {
-        total += +everyCash[1][i];
+    for (let i = 0; i < args.length; i++) {
+        total += +args[i];
     }
     return total;
 }
 
-const {cash} = sponsors;
+const {cash, eu, eu:[a], rus} = sponsors;
 let money = calcCash(null, cash);
-
-const {eu} = sponsors;
-const {eu:[a]} = sponsors;
-const {rus} = sponsors;
 
 function makeBusiness(owner, director = 'Victor', cash, emp) {
     let sumSponsors = eu.concat(rus, 'unexpected sponsor');
