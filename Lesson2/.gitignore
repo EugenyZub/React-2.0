@@ -4,6 +4,4 @@ package-lock.json
 /src/empl2.js
 /src/mooney2.js
 /src/index2.js
-webpack2.config.js
 yarn.lock
-/dist/main.js
