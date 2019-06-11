@@ -8,8 +8,6 @@ import PostAddForm from '../post-add-form';
 
 import './app.css';
 
-
-
 const App = () => {
     return(
         <div className='app'>
@@ -20,6 +18,7 @@ const App = () => {
             </div>
             <PostList/>
             <PostAddForm/>
+            <AppHeader/>
         </div>
         
     )
