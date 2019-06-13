@@ -11,7 +11,8 @@ import styled from 'styled-components';
 const AppBlock = styled.div`
     margin: 0 auto;
     max-width: 800px;
-`
+`;
+
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -21,9 +22,9 @@ export default class App extends Component {
                 // [],
                 // null,
                 // undefined,
-                {label: 'Going to learn React', important: true, id: '1'},
-                {label: 'That is so good', important: false, id: '2'},
-                {label: 'I neeed a break...', important: false, id: '3'}
+                {label: 'Going to learn React', important: true, id: 1},
+                {label: 'That is so good', important: false, id: 2},
+                {label: 'I neeed a break...', important: false, id: 3}
             ]     
         };
         this.deleteItem = this.deleteItem.bind(this);
@@ -55,7 +56,7 @@ export default class App extends Component {
             const newArr = [...data, newItem];
             return {
                 data: newArr
-            }
+            };
         });
     }
 
@@ -73,8 +74,7 @@ export default class App extends Component {
                 />
                 <PostAddForm
                     onAdd={this.addItem}/>
-            </AppBlock>
-            
+            </AppBlock>            
         )
     }
 
