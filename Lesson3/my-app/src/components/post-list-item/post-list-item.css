@@ -56,3 +56,8 @@
 .important .btn-star {
     color: #aeaeae;
 }
+
+.edit {
+    animation-name: splash;
+    animation-duration: 1.7s;
+}

@@ -6,10 +6,12 @@ export default class PostListItem extends Component {
         super(props);
         this.state = {
             important: false,
-            like: false
+            like: false,
+            edit: false
         };
         this.onImportant = this.onImportant.bind(this);
         this.onLike = this.onLike.bind(this);
+        this.onEdit = this.onEdit.bind(this);
     }
 
     onImportant() {
@@ -23,17 +25,30 @@ export default class PostListItem extends Component {
             like: !like
         }));
     }
+    onEdit() {
+        this.setState(({edit}) => ({
+            edit: !edit
+        }));
+    }
 
     render () {
         const {label} = this.props;
-        const {important, like} = this.state;
-        let classNames = 'app-list-item d-flex justify-content-between';
-        
+        const {important, like, edit} = this.state;
+        let classNames = 'app-list-item d-flex justify-content-between',
+            overlay = document.querySelector('.overlay');
+
         if (important) {
             classNames +=' important';
         }
         if (like) {
             classNames +=' like';
+        }
+        if (edit) {
+            overlay.style.display = 'block';
+            classNames +=' edit';
+            document.body.style.overflow = 'hidden';
+            document.querySelector('#textarea').placeholder =  label;
+            console.log(document.querySelector('#textarea').textContent)
         }
 
         return (
@@ -43,15 +58,21 @@ export default class PostListItem extends Component {
                     {label}
                 </span>
                 <div className='d-flex justify-content-center align-items-center'>
-                    <button  type='button'
+                    <button type='button'
+                            className='btn-edit btn-sm'
+                            onClick={this.onEdit}>
+                        <i className='fa fa-edit'></i>
+                    </button>
+                    <button type='button'
                             className='btn-star btn-sm'
                             onClick={this.onImportant}>
                         <i className='fa fa-star'></i>
                     </button>
-                    <button  type='button'
+                    <button type='button'
                             className='btn-trash btn-sm'>
                         <i className='fa fa-trash-o'></i>
                     </button>
+                    
                     <i className='fa fa-heart'></i> 
                 </div>
             </div>
