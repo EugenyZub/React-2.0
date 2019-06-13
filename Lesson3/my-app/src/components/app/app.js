@@ -12,6 +12,9 @@ const App = () => {
 
     const data = [
         5,
+        [],
+        null,
+        undefined,
         {label: 'Going to learn React', important: true, id: 'wewq'},
         {label: 'That is so good', important: false, id: 'dsd'},
         {label: 'I neeed a break...', important: false, id: 'wqfu'}
