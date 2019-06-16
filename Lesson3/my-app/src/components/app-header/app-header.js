@@ -18,27 +18,20 @@ const Header = styled.div`
 const AppHeader = ({liked, allPosts})=> {
 
     function rightWord(numberOfPosts) {
-        let str = '';
-        switch(numberOfPosts) {
-            case 1: 
-                str = `${allPosts} запись, из них понравились ${liked}`;
-                break;
-            case 2:
-            case 3:
-            case 4:
-                str = `${allPosts} записи, из них понравились ${liked}`;
-                break;
-            default: 
-                str = `${allPosts} записей, из них понравились ${liked}`;
-                break;
+        if((numberOfPosts % 10) === 1 && numberOfPosts !== 11) {
+            return `${allPosts} запись, из них понравились ${liked}`;
+        } else if ( ( (numberOfPosts % 10) === 2 && numberOfPosts < 10) || ( (numberOfPosts % 10) === 2 && numberOfPosts > 20) ||
+                    ( (numberOfPosts % 10) === 3 && numberOfPosts < 10) || ( (numberOfPosts % 10) === 3 && numberOfPosts > 20) ||
+                    ( (numberOfPosts % 10) === 4 && numberOfPosts < 10) || ( (numberOfPosts % 10) === 4 && numberOfPosts > 20) ){
+            return `${allPosts} записи, из них понравились ${liked}`;
+        } else {            
+            return `${allPosts} записей, из них понравились ${liked}`;
         }
-        return str;
     }
 
     return(
         <Header>
             <h1>Eugene Zub</h1>
-            {/* <h2>{allPosts} записей, из них понравились {liked}</h2>        */}
             <h2>{rightWord(allPosts)}</h2>
         </Header>
     )
