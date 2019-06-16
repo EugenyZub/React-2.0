@@ -5,20 +5,20 @@ import './post-list.css';
 
 const PostList = ({posts}) => {
 
-    const elements = posts.map((item) => {
-        
+    const withoutNull = posts.filter(item => item !== null);
+    
+    const withoutUndefined = withoutNull.filter((item) => {
+        const {...itemProps} = item;
+        return itemProps.label !== undefined; 
+    });
 
-        if(item != null) {
-            const {id, ...itemProps} = item;
-
-            if(itemProps.label != undefined) {            
-                return (
-                    <li key={id} className='list-group-item'>
-                        <PostListItem {...itemProps}/>
-                    </li>
-                )
-            }
-        }
+    const elements = withoutUndefined.map((item) => {          
+        const {id, ...itemProps} = item;        
+        return (
+            <li key={id} className='list-group-item'>
+                <PostListItem {...itemProps}/>
+            </li>
+        )
     });
 
     return (
