@@ -16,23 +16,35 @@ const Header = styled.div`
 `
 
 const AppHeader = ({liked, allPosts})=> {
-
-    function rightWord(numberOfPosts) {
-        if((numberOfPosts % 10) === 1 && numberOfPosts !== 11) {
-            return `${allPosts} запись, из них понравились ${liked}`;
-        } else if ( ( (numberOfPosts % 10) === 2 && numberOfPosts < 10) || ( (numberOfPosts % 10) === 2 && numberOfPosts > 20) ||
-                    ( (numberOfPosts % 10) === 3 && numberOfPosts < 10) || ( (numberOfPosts % 10) === 3 && numberOfPosts > 20) ||
-                    ( (numberOfPosts % 10) === 4 && numberOfPosts < 10) || ( (numberOfPosts % 10) === 4 && numberOfPosts > 20) ){
-            return `${allPosts} записи, из них понравились ${liked}`;
-        } else {            
-            return `${allPosts} записей, из них понравились ${liked}`;
-        }
+    /* Первый вариант вывода*/
+    // function rightWord(numberOfPosts) {
+    //     if((numberOfPosts % 10) === 1 && numberOfPosts !== 11) {
+    //         return `${allPosts} запись, из них понравились ${liked}`;
+    //     } else if ( numberOfPosts % 10 >= 2 && 
+    //                  numberOfPosts % 10 <= 4 && 
+    //                  (numberOfPosts < 10 || numberOfPosts > 20) 
+    //             ){
+    //         return `${allPosts} записи, из них понравились ${liked}`;
+    //     } else {            
+    //         return `${allPosts} записей, из них понравились ${liked}`;
+    //     }     
+    // }
+    
+    /* Второй вариант*/ 
+    function declOfNum(n, titles) {  
+        return titles[(n%10===1 && n%100!==11) ? 0 : 
+                      (n%10>=2 && n%10<=4 && (n%100<10 || n%100>20))? 1 : 2];  
     }
-
+    let titleNames = [`${allPosts} запись, из них понравились ${liked}`, 
+                      `${allPosts} записи, из них понравились ${liked}`, 
+                      `${allPosts} записей, из них понравились ${liked}`
+                    ];
+    
     return(
         <Header>
             <h1>Eugene Zub</h1>
-            <h2>{rightWord(allPosts)}</h2>
+            {/* <h2>{rightWord(allPosts)}</h2> */}
+            <h2>{declOfNum(allPosts, titleNames)}</h2>
         </Header>
     )
 }
