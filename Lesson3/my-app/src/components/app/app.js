@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import idGenerator from 'react-id-generator';
 
 import AppHeader from '../app-header';
 import SearchPanel from '../search-panel';
@@ -22,26 +23,24 @@ export default class App extends Component {
                 // [],
                 // null,
                 // undefined,
-                {label: 'Going to learn React', important: true, id: 1},
-                {label: 'That is so good', important: false, id: 2},
-                {label: 'I neeed a break...', important: false, id: 3}
+                {label: 'Going to learn React', important: true, id: idGenerator()},
+                {label: 'That is so good', important: false, id: idGenerator()},
+                {label: 'I neeed a break...', important: false, id: idGenerator()}
             ]     
         };
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
-
-        this.maxId = 4;
     }
     
     deleteItem(id) {
+        console.log(id);
         this.setState(({data}) => {
             const index = data.findIndex(elem => elem.id === id);
-
             const newArr = [...data.slice(0, index), ...data.slice(index + 1)];
 
             return {
                 data: newArr
-            }
+            };
         });
     }
 
@@ -49,7 +48,7 @@ export default class App extends Component {
         const newItem = {
             label: body,
             important: false,
-            id: this.maxId++
+            id: idGenerator()
         }
 
         this.setState(({data}) => {
@@ -77,6 +76,4 @@ export default class App extends Component {
             </AppBlock>            
         )
     }
-
-    
 }
