@@ -71,23 +71,19 @@ export default class App extends Component {
     toggle(id, toggleOn) {
         this.setState(({data}) => {
             const index = data.findIndex(elem => elem.id  === id);
-
+            let newItem = '';
             const old = data[index];
+
             if(toggleOn === 'like') {
-                const newItem = {...old, like: !old.like};
-                const newArr = [ ...data.slice(0, index), newItem, ...data.slice(index + 1)];
-                return {
-                    data: newArr
-                }
+                newItem = {...old, like: !old.like};
+            } else {
+                newItem = {...old, important: !old.important};
             }
 
-            if(toggleOn === 'important') {
-                const newItem = {...old, important: !old.important};
-                const newArr = [ ...data.slice(0, index), newItem, ...data.slice(index + 1)];
-                return {
-                    data: newArr
-                }
-            } 
+            const newArr = [ ...data.slice(0, index), newItem, ...data.slice(index + 1)];
+            return {
+                data: newArr
+            }
         });
     }
 
