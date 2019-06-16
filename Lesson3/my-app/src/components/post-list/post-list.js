@@ -7,27 +7,25 @@ import './post-list.css';
 
 const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked}) => {
 
-    const newArr = posts.filter(item => item !== null);
+    const withoutNull = posts.filter(item => item !== null);
+    
+    const withoutUndefined = withoutNull.filter((item) => {
+        const {...itemProps} = item;
+        return itemProps.label !== undefined; 
+    });
 
-    const elements = posts.map((item) => {
-
-        //if(item != null) {
-            const {id, ...itemProps} = item;
-
-            if(itemProps.label !== undefined) {            
-                return (
-                    <ListGroupItem key={id} className='list-group-item'>
-                        <PostListItem 
-                            {...itemProps}
-                            onDelete={() => onDelete(id)}
-                            onToggleImportant={() => onToggleImportant(id)}
-                            onToggleLiked={() => onToggleLiked(id)}
-                        />
-                    </ListGroupItem>
-                )
-            }
-        //}
-        
+    const elements = withoutUndefined.map((item) => {
+            const {id, ...itemProps} = item;   
+            return (
+                <ListGroupItem key={id} className='list-group-item'>
+                    <PostListItem 
+                        {...itemProps}
+                        onDelete={() => onDelete(id)}
+                        onToggleImportant={() => onToggleImportant(id)}
+                        onToggleLiked={() => onToggleLiked(id)}
+                    />
+                </ListGroupItem>
+            )     
     });
 
     return (
