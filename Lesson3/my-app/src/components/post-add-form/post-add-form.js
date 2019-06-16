@@ -12,7 +12,6 @@ export default class PostAddForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
     
-
     onValueChange(e) {
         this.setState({
             text: e.target.value
@@ -23,6 +22,9 @@ export default class PostAddForm extends Component {
         console.log(this.state.text)
         e.preventDefault();
         this.props.onAdd(this.state.text);
+        this.setState({
+            text: ''
+        });
     }
 
     render() {
@@ -35,6 +37,7 @@ export default class PostAddForm extends Component {
                     placeholder='О чём вы думаете сейчас?'
                     className='form-control post-add-form-input new-post-label'
                     onChange={this.onValueChange}
+                    value={this.state.text}
                 />
                 <Button
                     outline
@@ -45,6 +48,5 @@ export default class PostAddForm extends Component {
                 </Button>
             </Form>
         )
-    }
-    
+    }   
 }

@@ -7,9 +7,11 @@ import './post-list.css';
 
 const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked}) => {
 
+    const newArr = posts.filter(item => item !== null);
+
     const elements = posts.map((item) => {
 
-        if(item != null) {
+        //if(item != null) {
             const {id, ...itemProps} = item;
 
             if(itemProps.label !== undefined) {            
@@ -24,7 +26,7 @@ const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked}) => {
                     </ListGroupItem>
                 )
             }
-        }
+        //}
         
     });
 
