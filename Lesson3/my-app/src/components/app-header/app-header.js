@@ -15,19 +15,16 @@ const Header = styled.div`
     }
 `
 
-const AppHeader = ({liked, allPosts})=> {
+const AppHeader = ({liked, allPosts}) => {
     /* Первый вариант вывода*/
-    // function rightWord(numberOfPosts) {
-    //     if((numberOfPosts % 10) === 1 && numberOfPosts !== 11) {
-    //         return `${allPosts} запись, из них понравились ${liked}`;
-    //     } else if ( numberOfPosts % 10 >= 2 && 
-    //                  numberOfPosts % 10 <= 4 && 
-    //                  (numberOfPosts < 10 || numberOfPosts > 20) 
-    //             ){
-    //         return `${allPosts} записи, из них понравились ${liked}`;
-    //     } else {            
-    //         return `${allPosts} записей, из них понравились ${liked}`;
-    //     }     
+    // function rightWord(numberOfPosts) {       
+    //     return ((numberOfPosts % 10) === 1 && numberOfPosts !== 11) ? 
+    //             `${allPosts} запись, из них понравились ${liked}` :
+    //             ( numberOfPosts % 10 >= 2 && 
+    //               numberOfPosts % 10 <= 4 && 
+    //              (numberOfPosts < 10 || numberOfPosts > 20) 
+    //             ) ? `${allPosts} записи, из них понравились ${liked}` :
+    //             `${allPosts} записей, из них понравились ${liked}`;
     // }
     
     /* Второй вариант*/ 
