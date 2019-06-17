@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Nav, NavItem, NavLink} from 'reactstrap';
+import './header.css';
 
 const HeaderBlock = styled.div`
     display: flex;
@@ -14,37 +16,37 @@ const HeaderTitle = styled.h3`
     margin: 0;
 `;
 
-const HeaderLinks = styled.ul`
-    display: flex;
-    margin: 0;
-    align-items: center;
-    color: #fff;
-    list-style-type: none;
-    li {
-        margin-right: 20px;
-        font-size: 18px;
-    }
-`;
+// const HeaderLinks = styled.ul`
+//     display: flex;
+//     margin: 0;
+//     align-items: center;
+//     color: #fff;
+//     list-style-type: none;
+//     li {
+//         margin-right: 20px;
+//         font-size: 18px;
+//     }
+// `;
 
 const Header = () => {
     return (
         <HeaderBlock>
             <HeaderTitle>
-                <a href="#">
-                Game of Thrones DB
-                </a>
+                <NavLink href="#">
+                    Game of Thrones DB
+                </NavLink>
             </HeaderTitle>
-            <HeaderLinks>
-                <li>
-                    <a href="#">Characters</a>
-                </li>
-                <li>
-                    <a href="#">Houses</a>
-                </li>
-                <li>
-                    <a href="#">Books</a>   
-                </li>
-            </HeaderLinks>
+            <Nav className='header-links'>
+                <NavItem className='header-links-li'>
+                    <NavLink href="#">Characters</NavLink>
+                </NavItem>
+                <NavItem className='header-links-li'>
+                    <NavLink href="#">Houses</NavLink>
+                </NavItem>
+                <NavItem className='header-links-li'>
+                    <NavLink href="#">Books</NavLink>   
+                </NavItem>
+            </Nav>
         </HeaderBlock>
     );
 };
